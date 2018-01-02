@@ -2,8 +2,8 @@
 
 namespace App\Http\Requests\API;
 
-use InfyOm\Generator\Request\APIRequest;
-use InfyOm\Generator\Utils\ResponseUtil;
+use Webcore\Generator\Request\APIRequest;
+use Webcore\Generator\Utils\ResponseUtil;
 use Illuminate\Contracts\Validation\Validator;
 use Response;
 
