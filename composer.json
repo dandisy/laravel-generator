@@ -49,7 +49,7 @@
     "extra": {
         "laravel": {
             "providers": [
-                "\\Webcore\\Generator\\InfyOmGeneratorServiceProvider"
+                "\\Webcore\\Generator\\WebcoreGeneratorServiceProvider"
             ]
         }
     }    
