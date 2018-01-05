@@ -28,6 +28,9 @@ class GeneratorField
     public $inForm = true;
     public $inIndex = true;
 
+    // add by dandisy
+    public $dbNullable = false;
+
     public function parseDBType($dbInput)
     {
         $this->dbInput = $dbInput;
@@ -68,6 +71,9 @@ class GeneratorField
             $this->isFillable = false;
             $this->inForm = false;
             $this->inIndex = false;
+
+            // add by dandisys
+            $this->dbNullable = false;
         }
         if (in_array('f', $optionsArr)) {
             $this->isFillable = false;
@@ -77,6 +83,11 @@ class GeneratorField
         }
         if (in_array('ii', $optionsArr)) {
             $this->inIndex = false;
+        }
+
+        // add by dandisy
+        if (in_array('n', $optionsArr)) {
+            $this->dbNullable = true;
         }
     }
 
@@ -103,6 +114,11 @@ class GeneratorField
         }
 
         $this->migrationText .= ')';
+
+        //add by dandisy
+        if($this->dbNullable) {
+            $this->migrationText .= '->nullable()';
+        }
 
         foreach ($inputsArr as $input) {
             $inputParams = explode(',', $input);
@@ -134,6 +150,9 @@ class GeneratorField
         $field->isPrimary = isset($fieldInput['primary']) ? $fieldInput['primary'] : false;
         $field->inForm = isset($fieldInput['inForm']) ? $fieldInput['inForm'] : true;
         $field->inIndex = isset($fieldInput['inIndex']) ? $fieldInput['inIndex'] : true;
+
+        // add by dandisy
+        $field->dbNullable = isset($fieldInput['dbNullable']) ? $fieldInput['dbNullable'] : false;
 
         return $field;
     }

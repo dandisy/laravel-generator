@@ -28,7 +28,9 @@ class GeneratorFieldsInputUtil
         /*
          * Field Input Format: field_name <space> db_type <space> html_type(optional) <space> options(optional)
          * Options are to skip the field from certain criteria like searchable, fillable, not in form, not in index
+         * and table field nullable in DB // add by dandisy
          * Searchable (s), Fillable (f), In Form (if), In Index (ii)
+         * DB Nullable (n) // add by dandisy
          * Sample Field Inputs
          *
          * title string text

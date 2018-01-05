@@ -170,7 +170,7 @@ class CommandData
             $primaryKey->name = 'id';
         }
         $primaryKey->parseDBType('increments');
-        $primaryKey->parseOptions('s,f,p,if,ii');
+        $primaryKey->parseOptions('s,f,p,if,ii,n'); // edited by dandisy
 
         $this->fields[] = $primaryKey;
     }
@@ -180,13 +180,13 @@ class CommandData
         $createdAt = new GeneratorField();
         $createdAt->name = 'created_at';
         $createdAt->parseDBType('timestamp');
-        $createdAt->parseOptions('s,f,if,ii');
+        $createdAt->parseOptions('s,f,if,ii,n'); // edited by dandisy
         $this->fields[] = $createdAt;
 
         $updatedAt = new GeneratorField();
         $updatedAt->name = 'updated_at';
         $updatedAt->parseDBType('timestamp');
-        $updatedAt->parseOptions('s,f,if,ii');
+        $updatedAt->parseOptions('s,f,if,ii,n');
         $this->fields[] = $updatedAt;
     }
 

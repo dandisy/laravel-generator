@@ -58,7 +58,10 @@ class MigrationGenerator extends BaseGenerator
                 }
             }
 
-            $fields[] = $field->migrationText;
+            // edited by dandisy
+            // $fields[] = $field->migrationText;
+            $fields[] = $field->dbNullable && !$field->isPrimary ? rtrim($field->migrationText, ';') . '->nullable();' : $field->migrationText;
+
             if (!empty($field->foreignKeyText)) {
                 $foreignKeys[] = $field->foreignKeyText;
             }
