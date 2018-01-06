@@ -10,6 +10,8 @@ Laravel Generator with Additional Form Builder
     - Support nullable field in database table
     - Support auto generate log fields in table (console option = --logs)
 
+For https://github.com/dandisy/webcore
+
 This package based on https://github.com/InfyOmLabs/laravel-generator
 
 Documentation is located [here](http://labs.infyom.com/laravelgenerator)
