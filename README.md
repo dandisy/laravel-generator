@@ -7,7 +7,8 @@ Laravel Generator with Additional Form Builder
     - Select2 (all select input will be select2)
     - HTML Text Editor (htmltype = text-editor)
     - File Manager (htmltype = file-manager or files-manager)
-    - Support nullable field in database table (dbNullable = {bool} or option "n" in console)
+    - Support nullable field in database table
+    - Support auto generate log fields in table (console option = --logs)
 
 This package based on https://github.com/InfyOmLabs/laravel-generator
 

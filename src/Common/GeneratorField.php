@@ -28,8 +28,7 @@ class GeneratorField
     public $inForm = true;
     public $inIndex = true;
 
-    // add by dandisy
-    public $dbNullable = false;
+    public $dbNullable = false; // add by dandisy
 
     public function parseDBType($dbInput)
     {

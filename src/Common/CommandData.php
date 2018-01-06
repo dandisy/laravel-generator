@@ -158,6 +158,11 @@ class CommandData
             }
         }
 
+        // add by dandisy
+        if($this->getOption('logs')) {
+            $this->addLogs();
+        }
+
         $this->addTimestamps();
     }
 
@@ -175,6 +180,22 @@ class CommandData
         $this->fields[] = $primaryKey;
     }
 
+    // add by dandisy
+    private function addLogs()
+    {
+        $createdBy = new GeneratorField();
+        $createdBy->name = 'created_by';
+        $createdBy->parseDBType('integer');
+        $createdBy->parseOptions('if,n');
+        $this->fields[] = $createdBy;
+
+        $updatedBy = new GeneratorField();
+        $updatedBy->name = 'updated_by';
+        $updatedBy->parseDBType('integer');
+        $updatedBy->parseOptions('if,n'); // edited by dandisy
+        $this->fields[] = $updatedBy;
+    }
+
     private function addTimestamps()
     {
         $createdAt = new GeneratorField();
@@ -186,7 +207,7 @@ class CommandData
         $updatedAt = new GeneratorField();
         $updatedAt->name = 'updated_at';
         $updatedAt->parseDBType('timestamp');
-        $updatedAt->parseOptions('s,f,if,ii,n');
+        $updatedAt->parseOptions('s,f,if,ii,n'); // edited by dandisy
         $this->fields[] = $updatedAt;
     }
 
