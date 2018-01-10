@@ -7,8 +7,9 @@ Laravel Generator with Additional Form Builder
     - Select2 (all select input will be select2)
     - HTML Text Editor (htmltype = text-editor)
     - File Manager (htmltype = file-manager or files-manager)
-    - Support nullable field in database table
-    - Support auto generate log fields in table (console option = --logs)
+    - Nullable field in migration (console option = n, or in json file using dbNullable = true)
+    - Logged fields : created_by and updated_by (console option = --logs)
+    - Relational support : add model view in controller, related function in model, and related data in select2 form filed (htmltype = select,model-view=show-field=value-field)
 
 For https://github.com/dandisy/webcore
 
