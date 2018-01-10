@@ -34,8 +34,16 @@ class ControllerGenerator extends BaseGenerator
         $this->commandData->addDynamicVariable('$RELATION_QUERY$', '');
         $this->commandData->addDynamicVariable('$RELATION_VIEW$', '');
         if($this->commandData->relations) {
-            $this->commandData->addDynamicVariable('$RELATION_QUERY$', '$'.strtolower($this->commandData->relations[0]->inputs[0]).' = \App\Models\\'.$this->commandData->relations[0]->inputs[0].'::all();');
-            $this->commandData->addDynamicVariable('$RELATION_VIEW$', '->with(\''.strtolower($this->commandData->relations[0]->inputs[0]).'\', $'.strtolower($this->commandData->relations[0]->inputs[0]).')');
+            $relationQuery = '';
+            $relationView = '';
+
+            foreach($this->commandData->relations as $relation) {
+                $relationQuery .= "$".strtolower($relation->inputs[0])." = \App\Models\\".$relation->inputs[0]."::all();".infy_nl_tab(1,2);
+                $relationView .= infy_nl_tab(1,3)."->with('".strtolower($relation->inputs[0])."', $".strtolower($relation->inputs[0]).")";
+            }
+
+            $this->commandData->addDynamicVariable('$RELATION_QUERY$', $relationQuery);
+            $this->commandData->addDynamicVariable('$RELATION_VIEW$', $relationView);
         }
 
         if ($this->commandData->getAddOn('datatables')) {
