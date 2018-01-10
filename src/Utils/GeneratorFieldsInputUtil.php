@@ -63,7 +63,7 @@ class GeneratorFieldsInputUtil
     public static function prepareKeyValueArrayStr($arr)
     {
         // add by dandisy
-        if($arr['datasource']) {
+        if(array_key_exists('datasource', $arr)) {
             $related = explode('=', $arr['datasource']);
 
             return '$'.$related[0].'->pluck(\''.$related[1].'\', \''.$related[2].'\')';
