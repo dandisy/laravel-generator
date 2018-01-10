@@ -233,6 +233,7 @@ class CommandData
 
                 $fileContents = file_get_contents($filePath);
                 $jsonData = json_decode($fileContents, true);
+
                 $this->fields = [];
                 foreach ($jsonData as $field) {
                     if (isset($field['type']) && $field['relation']) {

@@ -30,6 +30,12 @@ class ControllerGenerator extends BaseGenerator
 
     public function generate()
     {
+        // add by dandisy
+        $this->commandData->addDynamicVariable('$RELATION_QUERY$', '');
+        $this->commandData->addDynamicVariable('$RELATION_VIEW$', '');
+        $this->commandData->addDynamicVariable('$RELATION_QUERY$', '$'.strtolower($this->commandData->relations[0]->inputs[0]).' = \App\Models\\'.$this->commandData->relations[0]->inputs[0].'::all();');
+        $this->commandData->addDynamicVariable('$RELATION_VIEW$', '->with(\''.strtolower($this->commandData->relations[0]->inputs[0]).'\', $'.strtolower($this->commandData->relations[0]->inputs[0]).')');
+
         if ($this->commandData->getAddOn('datatables')) {
             // edit by dandisy
             //$templateData = get_template('scaffold.controller.datatable_controller', 'laravel-generator');

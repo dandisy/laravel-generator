@@ -49,9 +49,11 @@ class GeneratorField
 
         $inputsArr = explode(',', $htmlInput);
 
-        $this->htmlType = array_shift($inputsArr);
+        // edit by dandisy
+        //$this->htmlType = array_shift($inputsArr);
 
         if (count($inputsArr) > 0) {
+            $this->htmlType = array_shift($inputsArr); // add by dandisy
             $this->htmlValues = $inputsArr;
         }
     }

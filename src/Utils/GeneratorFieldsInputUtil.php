@@ -62,6 +62,13 @@ class GeneratorFieldsInputUtil
 
     public static function prepareKeyValueArrayStr($arr)
     {
+        // add by dandisy
+        if($arr['datasource']) {
+            $related = explode('=', $arr['datasource']);
+
+            return '$'.$related[0].'->pluck(\''.$related[1].'\', \''.$related[2].'\')';
+        }
+
         $arrStr = '[';
         foreach ($arr as $key => $item) {
             $arrStr .= "'$item' => '$key', ";

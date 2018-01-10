@@ -14,19 +14,19 @@ class HTMLFieldGenerator
             case 'text':
             case 'textarea':
 
-            // added by dandi
+            // add by dandisy
             case 'text-editor':
 
             case 'date':
 
-            // added by dandi
+            // add by dandisy
             case 'date-picker':
             case 'time-picker':
             case 'datetime-picker':
 
             case 'file':
 
-            // added by dandi
+            // add by dandisy
             case 'file-manager':
             case 'files-manager':
 
@@ -39,7 +39,7 @@ class HTMLFieldGenerator
                 break;
             case 'select':
 
-            // added by dandi
+            // add by dandi
             case 'select-multiple':
                 $fieldTemplate = get_template('scaffold.fields.'.$field->htmlType, $templateType);
                 $optionLabels = GeneratorFieldsInputUtil::prepareKeyValueArrFromLabelValueStr($field->htmlValues);
