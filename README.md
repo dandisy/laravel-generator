@@ -10,6 +10,7 @@ Laravel Generator with Additional Form Builder
     - Nullable field in migration (console option = n, or in json file using dbNullable = true)
     - Logged fields : created_by and updated_by (console option = --logs)
     - Relational support : add model view in controller, related function in model, and related data in select2 form filed (htmltype = select,model-view=show-field=value-field)
+    - Component and theme reader generator (htmltype = select,component or select,theme)
 
 For https://github.com/dandisy/webcore
 
