@@ -69,6 +69,25 @@ class GeneratorFieldsInputUtil
             return '$'.$related[0].'->pluck(\''.$related[1].'\', \''.$related[2].'\')';
         }
 
+        // add by dandisy
+        if(array_key_exists('component', $arr)) {
+            // $components = array_map(function ($file) {
+            //     $fileName = explode('.', $file);
+            //     if(count($fileName) > 0) {
+            //         return $fileName[0];
+            //     }
+            // }, Storage::disk('component')->allFiles());
+
+            // $arr = $components;
+            // $arr = array_combine($arr, $arr);
+            return '$components';
+        }
+
+        // add by dandisy
+        if(array_key_exists('theme', $arr)) {
+            return '$themes';
+        }
+
         $arrStr = '[';
         foreach ($arr as $key => $item) {
             $arrStr .= "'$item' => '$key', ";

@@ -31,8 +31,14 @@ class ControllerGenerator extends BaseGenerator
     public function generate()
     {
         // add by dandisy
+        $components = FALSE;
+        $themes = FALSE;
         $this->commandData->addDynamicVariable('$RELATION_QUERY$', '');
         $this->commandData->addDynamicVariable('$RELATION_VIEW$', '');
+        $this->commandData->addDynamicVariable('$COMPONENT_QUERY$', '');
+        $this->commandData->addDynamicVariable('$COMPONENT_VIEW$', '');
+        $this->commandData->addDynamicVariable('$THEME_QUERY$', '');
+        $this->commandData->addDynamicVariable('$THEME_VIEW$', '');
         if($this->commandData->relations) {
             $relationQuery = '';
             $relationView = '';
@@ -44,6 +50,40 @@ class ControllerGenerator extends BaseGenerator
 
             $this->commandData->addDynamicVariable('$RELATION_QUERY$', $relationQuery);
             $this->commandData->addDynamicVariable('$RELATION_VIEW$', $relationView);
+        }
+
+        // add by dandisy
+        foreach($this->commandData->fields as $field) {
+            if ('select,component' == $field->htmlInput) {
+                $components = TRUE;
+            }
+        }
+        foreach($this->commandData->fields as $field) {
+            if ('select,theme' == $field->htmlInput) {
+                $themes = TRUE;
+            }
+        }
+        if($components) {
+            $componentQuery = "\n".'$components = array_map(function ($file) {'.infy_nl_tab(1,3).
+                '$fileName = explode(\'.\', $file);'.infy_nl_tab(1,3).
+                'if(count($fileName) > 0) {'.infy_nl_tab(1,4).
+                    'return $fileName[0];'.infy_nl_tab(1,3).
+                "}".infy_nl_tab(1,2).
+            "}, Storage::disk('component')->allFiles());".infy_nl_tab(2,2).
+            '$components = array_combine($components, $components);';
+            $this->commandData->addDynamicVariable('$COMPONENT_QUERY$', $componentQuery);
+            $this->commandData->addDynamicVariable('$COMPONENT_VIEW$', infy_nl_tab(1,3).'->with(\'components\', $components)');
+        }
+        if($themes) {
+            $themeQuery = "\n".'$themes = array_map(function ($file) {'.infy_nl_tab(1,3).
+                '$fileName = explode(\'.\', $file);'.infy_nl_tab(1,3).
+                'if(count($fileName) > 0) {'.infy_nl_tab(1,4).
+                    'return $fileName[0];'.infy_nl_tab(1,3).
+                "}".infy_nl_tab(1,2).
+            "}, Storage::disk('theme')->allFiles());".infy_nl_tab(2,2).
+            '$themes = array_combine($themes, $themes);';
+            $this->commandData->addDynamicVariable('$THEME_QUERY$', $themeQuery);
+            $this->commandData->addDynamicVariable('$THEME_VIEW$', infy_nl_tab(1,3).'->with(\'themes\', $themes)');
         }
 
         if ($this->commandData->getAddOn('datatables')) {
