@@ -33,8 +33,10 @@ class ControllerGenerator extends BaseGenerator
         // add by dandisy
         $this->commandData->addDynamicVariable('$RELATION_QUERY$', '');
         $this->commandData->addDynamicVariable('$RELATION_VIEW$', '');
-        $this->commandData->addDynamicVariable('$RELATION_QUERY$', '$'.strtolower($this->commandData->relations[0]->inputs[0]).' = \App\Models\\'.$this->commandData->relations[0]->inputs[0].'::all();');
-        $this->commandData->addDynamicVariable('$RELATION_VIEW$', '->with(\''.strtolower($this->commandData->relations[0]->inputs[0]).'\', $'.strtolower($this->commandData->relations[0]->inputs[0]).')');
+        if($this->commandData->relations) {
+            $this->commandData->addDynamicVariable('$RELATION_QUERY$', '$'.strtolower($this->commandData->relations[0]->inputs[0]).' = \App\Models\\'.$this->commandData->relations[0]->inputs[0].'::all();');
+            $this->commandData->addDynamicVariable('$RELATION_VIEW$', '->with(\''.strtolower($this->commandData->relations[0]->inputs[0]).'\', $'.strtolower($this->commandData->relations[0]->inputs[0]).')');
+        }
 
         if ($this->commandData->getAddOn('datatables')) {
             // edit by dandisy
