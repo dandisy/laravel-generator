@@ -33,12 +33,15 @@ class ControllerGenerator extends BaseGenerator
         // add by dandisy
         $components = FALSE;
         $themes = FALSE;
+        $models = FALSE;
         $this->commandData->addDynamicVariable('$RELATION_QUERY$', '');
         $this->commandData->addDynamicVariable('$RELATION_VIEW$', '');
         $this->commandData->addDynamicVariable('$COMPONENT_QUERY$', '');
         $this->commandData->addDynamicVariable('$COMPONENT_VIEW$', '');
         $this->commandData->addDynamicVariable('$THEME_QUERY$', '');
         $this->commandData->addDynamicVariable('$THEME_VIEW$', '');
+        $this->commandData->addDynamicVariable('$MODEL_QUERY$', '');
+        $this->commandData->addDynamicVariable('$MODEL_VIEW$', '');
         if($this->commandData->relations) {
             $relationQuery = '';
             $relationView = '';
@@ -63,6 +66,11 @@ class ControllerGenerator extends BaseGenerator
                 $themes = TRUE;
             }
         }
+        foreach($this->commandData->fields as $field) {
+            if ('select,model' == $field->htmlInput) {
+                $models = TRUE;
+            }
+        }
         if($components) {
             $componentQuery = "\n".'$components = array_map(function ($file) {'.infy_nl_tab(1,3).
                 '$fileName = explode(\'.\', $file);'.infy_nl_tab(1,3).
@@ -84,6 +92,17 @@ class ControllerGenerator extends BaseGenerator
             '$themes = array_combine($themes, $themes);';
             $this->commandData->addDynamicVariable('$THEME_QUERY$', $themeQuery);
             $this->commandData->addDynamicVariable('$THEME_VIEW$', infy_nl_tab(1,3).'->with(\'themes\', $themes)');
+        }
+        if($models) {
+            $modelQuery = "\n".'$models = array_map(function ($file) {'.infy_nl_tab(1,3).
+                '$fileName = explode(\'.\', $file);'.infy_nl_tab(1,3).
+                'if(count($fileName) > 0) {'.infy_nl_tab(1,4).
+                    'return $fileName[0];'.infy_nl_tab(1,3).
+                "}".infy_nl_tab(1,2).
+            "}, Storage::disk('model')->allFiles());".infy_nl_tab(2,2).
+            '$models = array_combine($models, $models);';
+            $this->commandData->addDynamicVariable('$MODEL_QUERY$', $modelQuery);
+            $this->commandData->addDynamicVariable('$MODEL_VIEW$', infy_nl_tab(1,3).'->with(\'models\', $models)');
         }
 
         if ($this->commandData->getAddOn('datatables')) {

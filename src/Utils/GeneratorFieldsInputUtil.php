@@ -63,8 +63,8 @@ class GeneratorFieldsInputUtil
     public static function prepareKeyValueArrayStr($arr)
     {
         // add by dandisy
-        if(array_key_exists('datasource', $arr)) {
-            $related = explode('=', $arr['datasource']);
+        if(array_key_exists('relation', $arr)) {
+            $related = explode('=', $arr['relation']);
 
             return '$'.$related[0].'->pluck(\''.$related[1].'\', \''.$related[2].'\')';
         }
@@ -86,6 +86,11 @@ class GeneratorFieldsInputUtil
         // add by dandisy
         if(array_key_exists('theme', $arr)) {
             return '$themes';
+        }
+
+        // add by dandisy
+        if(array_key_exists('model', $arr)) {
+            return '$models';
         }
 
         $arrStr = '[';
