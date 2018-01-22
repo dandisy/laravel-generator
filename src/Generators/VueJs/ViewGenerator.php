@@ -100,13 +100,20 @@ class ViewGenerator extends BaseGenerator
                 case 'textarea':
 
                 // added by dandi
-                case 'textarea-rte':
+                case 'text-editor':
 
                 case 'date':
+
+                // add by dandisy
+                case 'date-picker':
+                case 'time-picker':
+                case 'datetime-picker':
+                
                 case 'file':
 
                 // added by dandi
                 case 'file-manager':
+                case 'files-manager':
 
                 case 'email':
                 case 'password':
@@ -117,7 +124,8 @@ class ViewGenerator extends BaseGenerator
                 case 'select':
 
                 // added by dandi
-                case 'select-multiple':
+                case 'multi-select':
+                case 'two-side-select':
 
                 case 'enum':
                     $fieldTemplate = get_template('vuejs.fields.select', $this->templateType);
