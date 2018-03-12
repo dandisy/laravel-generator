@@ -34,5 +34,9 @@ $PRIMARY$
         $RULES$
     ];
 
+    public function getTableColumns() {
+        return $this->getConnection()->getSchemaBuilder()->getColumnListing($this->getTable());
+    }
+
     $RELATIONS$
 }
