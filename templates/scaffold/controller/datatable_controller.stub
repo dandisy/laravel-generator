@@ -10,8 +10,9 @@ use $NAMESPACE_REPOSITORY$\$MODEL_NAME$Repository;
 use Flash;
 use $NAMESPACE_APP$\Http\Controllers\AppBaseController;
 use Response;
-use Illuminate\Support\Facades\Auth; // add by dandisy
-use Illuminate\Support\Facades\Storage; // add by dandisy
+use Illuminate\Support\Facades\Auth; // added by dandisy
+use Illuminate\Support\Facades\Storage; // added by dandisy
+use Maatwebsite\Excel\Facades\Excel; // added by dandisy
 
 class $MODEL_NAME$Controller extends AppBaseController
 {
@@ -42,11 +43,11 @@ class $MODEL_NAME$Controller extends AppBaseController
      */
     public function create()
     {
-        // add by dandisy
+        // added by dandisy
         $RELATION_QUERY$$COMPONENT_QUERY$$THEME_QUERY$$MODEL_QUERY$
 
-        // edit by dandisy
-        //return view('$VIEW_PREFIX$$MODEL_NAME_PLURAL_SNAKE$.create');
+        // edited by dandisy
+        // return view('$VIEW_PREFIX$$MODEL_NAME_PLURAL_SNAKE$.create');
         return view('$VIEW_PREFIX$$MODEL_NAME_PLURAL_SNAKE$.create')$RELATION_VIEW$$COMPONENT_VIEW$$THEME_VIEW$$MODEL_VIEW$;
     }
 
@@ -97,7 +98,7 @@ class $MODEL_NAME$Controller extends AppBaseController
      */
     public function edit($id)
     {
-        // add by dandisy
+        // added by dandisy
         $RELATION_QUERY$$COMPONENT_QUERY$$THEME_QUERY$$MODEL_QUERY$
 
         $$MODEL_NAME_CAMEL$ = $this->$MODEL_NAME_CAMEL$Repository->findWithoutFail($id);
@@ -108,8 +109,8 @@ class $MODEL_NAME$Controller extends AppBaseController
             return redirect(route('$ROUTE_NAMED_PREFIX$$MODEL_NAME_PLURAL_CAMEL$.index'));
         }
 
-        // edit by dandisy
-        //return view('$VIEW_PREFIX$$MODEL_NAME_PLURAL_SNAKE$.edit')->with('$MODEL_NAME_CAMEL$', $$MODEL_NAME_CAMEL$);
+        // edited by dandisy
+        // return view('$VIEW_PREFIX$$MODEL_NAME_PLURAL_SNAKE$.edit')->with('$MODEL_NAME_CAMEL$', $$MODEL_NAME_CAMEL$);
         return view('$VIEW_PREFIX$$MODEL_NAME_PLURAL_SNAKE$.edit')
             ->with('$MODEL_NAME_CAMEL$', $$MODEL_NAME_CAMEL$)$RELATION_VIEW$$COMPONENT_VIEW$$THEME_VIEW$$MODEL_VIEW$;        
     }
@@ -159,6 +160,28 @@ class $MODEL_NAME$Controller extends AppBaseController
         $this->$MODEL_NAME_CAMEL$Repository->delete($id);
 
         Flash::success('$MODEL_NAME_HUMAN$ deleted successfully.');
+
+        return redirect(route('$ROUTE_NAMED_PREFIX$$MODEL_NAME_PLURAL_CAMEL$.index'));
+    }
+
+    /**
+     * Store data $MODEL_NAME$ from an excel file in storage.
+     *
+     * @param Request $request
+     *
+     * @return Response
+     */
+    public function import(Request $request)
+    {
+        $input = $request->all();
+
+        Excel::load($request->file('file'), function($reader) {
+            $reader->each(function ($item) {
+                $$MODEL_NAME_CAMEL$ = $this->$MODEL_NAME_CAMEL$Repository->create($input);
+            });
+        });
+
+        Flash::success('$MODEL_NAME_HUMAN$ saved successfully.');
 
         return redirect(route('$ROUTE_NAMED_PREFIX$$MODEL_NAME_PLURAL_CAMEL$.index'));
     }
