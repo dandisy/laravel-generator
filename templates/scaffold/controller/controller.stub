@@ -10,7 +10,6 @@ use Illuminate\Http\Request;
 use Flash;
 use Prettus\Repository\Criteria\RequestCriteria;
 use Response;
-use Illuminate\Http\Request; // added by dandisy
 use Illuminate\Support\Facades\Auth; // added by dandisy
 use Illuminate\Support\Facades\Storage; // added by dandisy
 use Maatwebsite\Excel\Facades\Excel; // added by dandisy
