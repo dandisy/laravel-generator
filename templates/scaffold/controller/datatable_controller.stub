@@ -10,6 +10,7 @@ use $NAMESPACE_REPOSITORY$\$MODEL_NAME$Repository;
 use Flash;
 use $NAMESPACE_APP$\Http\Controllers\AppBaseController;
 use Response;
+use Illuminate\Http\Request; // added by dandisy
 use Illuminate\Support\Facades\Auth; // added by dandisy
 use Illuminate\Support\Facades\Storage; // added by dandisy
 use Maatwebsite\Excel\Facades\Excel; // added by dandisy
