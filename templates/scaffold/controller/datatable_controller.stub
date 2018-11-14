@@ -173,11 +173,9 @@ class $MODEL_NAME$Controller extends AppBaseController
      */
     public function import(Request $request)
     {
-        $input = $request->all();
-
         Excel::load($request->file('file'), function($reader) {
             $reader->each(function ($item) {
-                $$MODEL_NAME_CAMEL$ = $this->$MODEL_NAME_CAMEL$Repository->create($input);
+                $$MODEL_NAME_CAMEL$ = $this->$MODEL_NAME_CAMEL$Repository->create($item->toArray());
             });
         });
 
