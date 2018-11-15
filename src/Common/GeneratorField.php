@@ -32,8 +32,13 @@ class GeneratorField
 
     public function parseDBType($dbInput)
     {
-        $this->dbInput = $dbInput;
-        $this->prepareMigrationText();
+        // edited by dandisy
+        if($dbInput !== 'table') {
+            $this->dbInput = $dbInput;
+            $this->prepareMigrationText();
+        }
+        // $this->dbInput = $dbInput;
+        // $this->prepareMigrationText();
     }
 
     public function parseHtmlInput($htmlInput)
