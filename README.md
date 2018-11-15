@@ -1,5 +1,5 @@
 Webcore Laravel Generator
-==============================
+=========================
 
 Laravel Generator with Additional Form Builder
 

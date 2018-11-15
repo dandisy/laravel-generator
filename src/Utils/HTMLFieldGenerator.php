@@ -14,19 +14,19 @@ class HTMLFieldGenerator
             case 'text':
             case 'textarea':
 
-            // add by dandisy
+            // added by dandisy
             case 'text-editor':
 
             case 'date':
 
-            // add by dandisy
+            // added by dandisy
             case 'date-picker':
             case 'time-picker':
             case 'datetime-picker':
 
             case 'file':
 
-            // add by dandisy
+            // added by dandisy
             case 'file-manager':
             case 'files-manager':
 
@@ -39,7 +39,7 @@ class HTMLFieldGenerator
                 break;
             case 'select':
 
-            // add by dandi
+            // added by dandisy
             case 'multi-select':
                 $fieldTemplate = get_template('scaffold.fields.'.$field->htmlType, $templateType);
                 $optionLabels = GeneratorFieldsInputUtil::prepareKeyValueArrFromLabelValueStr($field->htmlValues);
@@ -51,7 +51,7 @@ class HTMLFieldGenerator
                 );
                 break;
 
-            // add by dandi
+            // added by dandisy
             case 'two-side-select':
 
             case 'enum':
@@ -86,6 +86,27 @@ class HTMLFieldGenerator
                     $radioButtons[] = $radioButtonTemplate;
                 }
                 $fieldTemplate = str_replace('$RADIO_BUTTONS$', implode("\n", $radioButtons), $fieldTemplate);
+                break;
+
+            // added by dandisy
+            case 'related-form':
+                $fieldTemplate = get_template('scaffold.fields.related-form', $templateType);
+
+                $relatedName = $field->name; // in this context is related table name
+                $relatedFields = $field->htmlValues; // in this context is fields in related table name
+
+                $relatedInputsTitle = '';
+                $relatedInputs = '';
+                foreach ($relatedFields as $field) {
+                    $relatedInputsTitle .= '<th>'.$field.'</th>';
+                    $relatedInputs .= '<td class="form-group">';
+                    $relatedInputs .= '{!! Form::text(\''.$relatedName.'['.$relatedName.'\'.$index.\']['.$field.']\', null, [\'class\' => \'form-control\']) !!}';
+                    $relatedInputs .= '</td>';
+                }                
+                $fieldTemplate = str_replace('$INPUT_FORM_TITLE$', $relatedInputsTitle, $fieldTemplate);
+                $fieldTemplate = str_replace('$INPUT_FORM$', $relatedInputs, $fieldTemplate);
+                $fieldTemplate = str_replace('$INPUT_FIELDS$', implode(',',$relatedFields), $fieldTemplate);
+                $fieldTemplate = str_replace('$RELATED_FORM_COLUMNS_COUNT$', count($relatedFields), $fieldTemplate);
                 break;
         }
 

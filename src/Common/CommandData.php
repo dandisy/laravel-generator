@@ -138,7 +138,7 @@ class CommandData
                 $this->commandError('Invalid Input. Try again');
                 continue;
             }
-
+            
             $validations = $this->commandObj->ask('Enter validations: ', false);
             $validations = ($validations == false) ? '' : $validations;
 
@@ -158,7 +158,7 @@ class CommandData
             }
         }
 
-        // add by dandisy
+        // added by dandisy
         if($this->getOption('logs')) {
             $this->addLogs();
         }
@@ -180,7 +180,7 @@ class CommandData
         $this->fields[] = $primaryKey;
     }
 
-    // add by dandisy
+    // added by dandisy
     private function addLogs()
     {
         $createdBy = new GeneratorField();
@@ -237,6 +237,12 @@ class CommandData
                 $this->fields = [];
                 foreach ($jsonData as $field) {
                     if (isset($field['type']) && $field['relation']) {
+                        // added by dandisy
+                        $this->fields[] = GeneratorFieldsInputUtil::processFieldInput(
+                            $fieldInputStr,
+                            $validations
+                        );
+                        
                         $this->relations[] = GeneratorFieldRelation::parseRelation($field['relation']);
                     } else {
                         $this->fields[] = GeneratorField::parseFieldFromFile($field);

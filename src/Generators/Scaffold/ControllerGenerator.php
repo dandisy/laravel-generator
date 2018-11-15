@@ -30,10 +30,10 @@ class ControllerGenerator extends BaseGenerator
 
     public function generate()
     {
-        // add by dandisy
+        // added by dandisy
         $components = FALSE;
         $themes = FALSE;
-        $models = FALSE;
+        $models = FALSE;        
         $this->commandData->addDynamicVariable('$RELATION_QUERY$', '');
         $this->commandData->addDynamicVariable('$RELATION_VIEW$', '');
         $this->commandData->addDynamicVariable('$COMPONENT_QUERY$', '');
@@ -55,7 +55,7 @@ class ControllerGenerator extends BaseGenerator
             $this->commandData->addDynamicVariable('$RELATION_VIEW$', $relationView);
         }
 
-        // add by dandisy
+        // added by dandisy
         foreach($this->commandData->fields as $field) {
             if ('select,component' == $field->htmlInput) {
                 $components = TRUE;
@@ -106,8 +106,8 @@ class ControllerGenerator extends BaseGenerator
         }
 
         if ($this->commandData->getAddOn('datatables')) {
-            // edit by dandisy
-            //$templateData = get_template('scaffold.controller.datatable_controller', 'laravel-generator');
+            // edited by dandisy
+            // $templateData = get_template('scaffold.controller.datatable_controller', 'laravel-generator');
             if($this->commandData->getOption('logs')) {
                 $templateData = get_template('scaffold.controller.logged_datatable_controller', 'laravel-generator');
             } else {
@@ -116,8 +116,8 @@ class ControllerGenerator extends BaseGenerator
 
             $this->generateDataTable();
         } else {
-            // edit by dandisy
-            //$templateData = get_template('scaffold.controller.controller', 'laravel-generator');
+            // edited by dandisy
+            // $templateData = get_template('scaffold.controller.controller', 'laravel-generator');
             if($this->commandData->getOption('logs')) {
                 $templateData = get_template('scaffold.controller.logged_controller', 'laravel-generator');
             } else {

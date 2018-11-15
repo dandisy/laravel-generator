@@ -28,9 +28,9 @@ class GeneratorFieldsInputUtil
         /*
          * Field Input Format: field_name <space> db_type <space> html_type(optional) <space> options(optional)
          * Options are to skip the field from certain criteria like searchable, fillable, not in form, not in index
-         * and table field nullable in DB // add by dandisy
+         * and nullable field in DB table // added by dandisy
          * Searchable (s), Fillable (f), In Form (if), In Index (ii)
-         * DB Nullable (n) // add by dandisy
+         * Nullable field (n) // added by dandisy
          * Sample Field Inputs
          *
          * title string text
@@ -45,7 +45,10 @@ class GeneratorFieldsInputUtil
 
         $field = new GeneratorField();
         $field->name = $fieldInputsArr[0];
-        $field->parseDBType($fieldInputsArr[1]);
+        if($fieldInputsArr[1] !== 'table') {
+            $field->parseDBType($fieldInputsArr[1]);
+        }
+        // $field->parseDBType($fieldInputsArr[1]);
 
         if (count($fieldInputsArr) > 2) {
             $field->parseHtmlInput($fieldInputsArr[2]);
@@ -62,14 +65,14 @@ class GeneratorFieldsInputUtil
 
     public static function prepareKeyValueArrayStr($arr)
     {
-        // add by dandisy
+        // added by dandisy
         if(array_key_exists('relation', $arr)) {
             $related = explode('=', $arr['relation']);
 
             return '$'.$related[0].'->pluck(\''.$related[1].'\', \''.$related[2].'\')';
         }
 
-        // add by dandisy
+        // added by dandisy
         if(array_key_exists('component', $arr)) {
             // $components = array_map(function ($file) {
             //     $fileName = explode('.', $file);
@@ -83,12 +86,12 @@ class GeneratorFieldsInputUtil
             return '$components';
         }
 
-        // add by dandisy
+        // added by dandisy
         if(array_key_exists('theme', $arr)) {
             return '$themes';
         }
 
-        // add by dandisy
+        // added by dandisy
         if(array_key_exists('model', $arr)) {
             return '$models';
         }

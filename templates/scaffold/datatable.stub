@@ -74,6 +74,7 @@ class $MODEL_NAME$DataTable extends DataTable
     protected function getColumns()
     {
         return [
+            'id',
             $DATATABLE_COLUMNS$
         ];
     }

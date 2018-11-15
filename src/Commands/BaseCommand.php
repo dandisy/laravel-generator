@@ -181,7 +181,7 @@ class BaseCommand extends Command
                 'primary'     => $field->isPrimary,
                 'inForm'      => $field->inForm,
                 'inIndex'     => $field->inIndex,
-                'dbNullable'     => $field->dbNullable,
+                'dbNullable'  => $field->dbNullable, // added by dandisy
             ];
         }
 
@@ -239,7 +239,7 @@ class BaseCommand extends Command
             ['datatables', null, InputOption::VALUE_REQUIRED, 'Override datatables settings'],
             ['views', null, InputOption::VALUE_REQUIRED, 'Specify only the views you want generated: index,create,edit,show'],
             ['relations', null, InputOption::VALUE_NONE, 'Specify if you want to pass relationships for fields'],
-            ['logs', null, InputOption::VALUE_NONE, 'Specify if you want to add created_by and updeted_by fields'], // add by dandisy
+            ['logs', null, InputOption::VALUE_NONE, 'Specify if you want to add created_by and updeted_by fields'], // added by dandisy
         ];
     }
 

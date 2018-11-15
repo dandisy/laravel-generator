@@ -74,7 +74,7 @@ class GeneratorConfig
         'datatables',
         'views',
         'relations',
-        'logs' // add by dandisy
+        'logs' // added by dandisy
     ];
 
     public $tableName;
@@ -115,7 +115,7 @@ class GeneratorConfig
         $this->nsApp = $commandData->commandObj->getLaravel()->getNamespace();
         $this->nsApp = substr($this->nsApp, 0, strlen($this->nsApp) - 1);
         $this->nsRepository = config('webcore.laravel_generator.namespace.repository', 'App\Repositories').$prefix;
-        // add by dandisy
+        // added by dandisy
         if (config('webcore.laravel_generator.ignore_repository_prefix', false)) {
             $this->nsRepository = config('webcore.laravel_generator.namespace.repository', 'App\Repositories');
         }
@@ -134,7 +134,7 @@ class GeneratorConfig
             'webcore.laravel_generator.namespace.api_controller',
             'App\Http\Controllers\API'
         ).$prefix;
-        // add by dandisy
+        // added by dandisy
         if (config('webcore.laravel_generator.ignore_api_controller_prefix', false)) {
             $this->nsApiController = config(
                 'webcore.laravel_generator.namespace.api_controller',
@@ -143,7 +143,7 @@ class GeneratorConfig
         }
 
         $this->nsApiRequest = config('webcore.laravel_generator.namespace.api_request', 'App\Http\Requests\API').$prefix;
-        // add by dandisy
+        // added by dandisy
         if (config('webcore.laravel_generator.ignore_api_request_prefix', false)) {
             $this->nsApiRequest = config('webcore.laravel_generator.namespace.api_request', 'App\Http\Requests\API');
         }
@@ -172,7 +172,7 @@ class GeneratorConfig
             'webcore.laravel_generator.path.repository',
             app_path('Repositories/')
         ).$prefix;
-        // add by dandisy
+        // added by dandisy
         if (config('webcore.laravel_generator.ignore_repository_prefix', false)) {
             $this->pathRepository = config(
                 'webcore.laravel_generator.path.repository',
@@ -191,7 +191,7 @@ class GeneratorConfig
             'webcore.laravel_generator.path.api_controller',
             app_path('Http/Controllers/API/')
         ).$prefix;
-        // add by dandisy
+        // added by dandisy
         if (config('webcore.laravel_generator.ignore_api_controller_prefix', false)) {
             $this->pathApiController = config(
                 'webcore.laravel_generator.path.api_controller',
@@ -203,7 +203,7 @@ class GeneratorConfig
             'webcore.laravel_generator.path.api_request',
             app_path('Http/Requests/API/')
         ).$prefix;
-        // add by dandisy
+        // added by dandisy
         if (config('webcore.laravel_generator.ignore_api_request_prefix', false)) {
             $this->pathApiRequest = config(
                 'webcore.laravel_generator.path.api_request',
@@ -460,7 +460,7 @@ class GeneratorConfig
             }
         }
 
-        // $addOns = ['swagger', 'tests', 'datatables']; edit by dandisy
+        // $addOns = ['swagger', 'tests', 'datatables']; edited by dandisy
         $addOns = ['swagger', 'tests', 'datatables', 'log'];
 
         foreach ($addOns as $addOn) {
