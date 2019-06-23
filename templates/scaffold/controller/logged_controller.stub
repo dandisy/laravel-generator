@@ -65,8 +65,8 @@ class $MODEL_NAME$Controller extends AppBaseController
     public function store(Create$MODEL_NAME$Request $request)
     {
         $input = $request->all();
-
         $input['created_by'] = Auth::user()->id;
+        $input['updated_by'] = Auth::user()->id;
 
         $$MODEL_NAME_CAMEL$ = $this->$MODEL_NAME_CAMEL$Repository->create($input);
 
@@ -131,10 +131,6 @@ class $MODEL_NAME$Controller extends AppBaseController
      */
     public function update($id, Update$MODEL_NAME$Request $request)
     {
-        $input = $request->all();
-
-        $input['updated_by'] = Auth::user()->id;
-
         $$MODEL_NAME_CAMEL$ = $this->$MODEL_NAME_CAMEL$Repository->findWithoutFail($id);
 
         if (empty($$MODEL_NAME_CAMEL$)) {
@@ -142,6 +138,9 @@ class $MODEL_NAME$Controller extends AppBaseController
 
             return redirect(route('$ROUTE_NAMED_PREFIX$$MODEL_NAME_PLURAL_CAMEL$.index'));
         }
+        
+        $input = $request->all();
+        $input['updated_by'] = Auth::user()->id;
 
         $$MODEL_NAME_CAMEL$ = $this->$MODEL_NAME_CAMEL$Repository->update($input, $id);
 
