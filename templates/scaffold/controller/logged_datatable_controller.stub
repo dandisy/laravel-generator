@@ -62,6 +62,7 @@ class $MODEL_NAME$Controller extends AppBaseController
     public function store(Create$MODEL_NAME$Request $request)
     {
         $input = $request->all();
+
         $input['created_by'] = Auth::user()->id;
         $input['updated_by'] = Auth::user()->id;
 
