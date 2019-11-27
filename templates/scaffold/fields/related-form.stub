@@ -1,0 +1,57 @@
+<!-- $FIELD_NAME_TITLE$ Form -->
+<div class="col-sm-12 col-lg-12">
+    <div class="panel panel-default">
+        <div class="panel-heading">
+            <h3 class="panel-title">$FIELD_NAME_TITLE$</h3>
+        </div>
+
+        <div class="panel-body">
+            <!-- Related Form Table -->
+            <div class="box-body">
+                <div class="table-responsive">
+                    <table class="table $FIELD_NAME$">
+                        <thead>
+                            <tr>
+                                $INPUT_FORM_TITLE$
+                                <th style="width:10%"></th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @if(isset($$FIELD_NAME$Data))
+                            @foreach($$FIELD_NAME$Data as $index => $relData)
+                            <tr>
+                                $INPUT_FORM$
+                                <td class="form-group" style="text-align:right">
+                                    <input type="hidden" name="$FIELD_NAME$-index[$FIELD_NAME${{$index}}][index]" value="{{ $relData['id'] }}" />
+                                    <button type="button" class="btn-delete btn btn-danger btn-xs" data-relation="$FIELD_NAME$" data-id="{{ $relData['id'] }}"><i class="glyphicon glyphicon-trash"></i></button>
+                                </td>
+                            </tr>
+                            @endforeach
+                            @endif
+
+                            @if(empty($$FIELD_NAME$Data))
+                            <tr class="empty-data">
+                                <td class="text-center" colspan="{{ $RELATED_FORM_COLUMNS_COUNT$ + 1 }}">
+                                    <span>No data available in table</span>
+                                </td>
+                            </tr>
+                            @endif
+                        </tbody>
+                    </table>
+                </div>
+
+                <!-- for polymorphic relation -->
+                {{--<input type="hidden" name="$FIELD_NAME$-type" value="" />--}}
+            </div>
+            <!-- End Related Form Table -->
+        </div>
+
+        <div class="panel-footer">
+            <div class="col-sm-2 pull-right">
+                <button type="button" class="btn btn-add-related btn-danger form-control" data-relation="$FIELD_NAME$" data-fields="$INPUT_FIELDS$">Add $FIELD_NAME_TITLE$</button>
+            </div>
+
+            <div class="clearfix"></div>
+        </div>
+    </div>
+</div>

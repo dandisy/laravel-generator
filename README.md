@@ -1,23 +1,62 @@
-Webcore Laravel Generator
-=========================
-
-Laravel Generator with Additional Form Builder
-
-    - Date Time Picker (htmltype = date-picker, time-picker or datetime-picker)
-    - Select2 (all select input will be select2, for multiple use htmltype = multi-select)
-    - Two side Multiple Select (htmltype = two-side-select)
-    - HTML Text Editor (htmltype = text-editor)
-    - File Manager (htmltype = file-manager or files-manager)
-    - Nullable field in migration (console option = n, or in json file using dbNullable = true)
-    - Logged fields : created_by and updated_by (console option = --logs)
-    - Relational support : add model view in controller, related function in model, and related data in select2 form filed (htmltype = select,model-view=show-field=value-field)
-    - Component and theme reader generator (htmltype = select,component or select,theme)
+AdminLTE templates for Webcore
+==============================
 
 For https://github.com/dandisy/webcore
 
-This package based on https://github.com/InfyOmLabs/laravel-generator
+This package based on https://github.com/InfyOmLabs/adminlte-templates
 
-Documentation is located [here](http://labs.infyom.com/laravelgenerator)
+Installation steps are located [here](http://labs.infyom.com/laravelgenerator/docs/master/adminlte-templates)
 
 Note :
 for more generic if any artisan command use generate instead infyom
+
+### Installation
+
+    composer require dandisy/adminlte-templates
+
+    php artisan vendor:publish --provider="Webcore\AdminLTETemplates\AdminLTETemplatesServiceProvider" --tag="public"
+
+    php artisan vendor:publish --provider="Webcore\AdminLTETemplates\AdminLTETemplatesServiceProvider" --tag="views"
+
+    or
+
+    php artisan vendor:publish --provider="Webcore\AdminLTETemplates\AdminLTETemplatesServiceProvider" --tag="viewa-all"
+
+### Usage (if this package is installed manually)
+
+0. unzip adminlte-templates.zip to vendor/dandisy
+
+1. add autoload classmap in composer.json
+
+    {
+        . . .
+        "autoload": {
+            "classmap": [
+                . . .
+                "vendor/dandisy"
+            ],
+            . . .
+
+2. register this package in config/app.php
+
+    /*
+    * Package Service Providers...
+    */
+    . . .    
+    Webcore\AdminLTETemplates\AdminLTETemplatesServiceProvider::class,
+
+3. composer dump-autoload
+4. publish the templates package to webcore project
+
+    php artisan vendor:publish --provider="Webcore\AdminLTETemplates\AdminLTETemplatesServiceProvider" --force
+
+5. ubah configurasi templates di file config/webcore/laravel_generator.php ke elmer-templates
+
+    /*
+    |--------------------------------------------------------------------------
+    | Templates
+    |--------------------------------------------------------------------------
+    |
+    */
+
+    'templates'         => 'adminlte-templates',
