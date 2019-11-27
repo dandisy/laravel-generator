@@ -7,6 +7,8 @@ use Webcore\Generator\Common\GeneratorFieldRelation;
 use Webcore\Generator\Utils\FileUtil;
 use Webcore\Generator\Utils\TableFieldsGenerator;
 
+use Illuminate\Support\Str;
+
 class ModelGenerator extends BaseGenerator
 {
     /**
@@ -197,7 +199,7 @@ class ModelGenerator extends BaseGenerator
 
         foreach ($this->commandData->fields as $field) {
             if (!empty($field->validations)) {
-                if (str_contains($field->validations, 'required')) {
+                if (Str::contains($field->validations, 'required')) {
                     $requiredFields[] = $field->name;
                 }
             }

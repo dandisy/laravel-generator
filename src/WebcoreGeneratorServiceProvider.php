@@ -35,6 +35,7 @@ class WebcoreGeneratorServiceProvider extends ServiceProvider
 
         $this->publishes([
             $configPath => config_path('webcore/laravel_generator.php'),
+            __DIR__.'/../samples/resources' => base_path('resources'),
         ]);
     }
 
