@@ -34,6 +34,10 @@ For https://github.com/dandisy/webcore
 
     php artisan vendor:publish --provider="Yajra\DataTables\DataTablesServiceProvider"
 
+    composer require yajra/laravel-datatables-buttons:^4.0
+
+    php artisan vendor:publish --tag=datatables-buttons --force
+
 ### Notes
 
 This package based on https://github.com/InfyOmLabs/laravel-generator
