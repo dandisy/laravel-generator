@@ -31,7 +31,7 @@ class GeneratorFieldRelation
                 $relationClass = 'HasOne';
                 break;
             case '1tm':
-                $functionName = Str::camel(str_plural($modelName));
+                $functionName = Str::camel(Str::plural($modelName));
                 $relation = 'hasMany';
                 $relationClass = 'HasMany';
                 break;
@@ -41,12 +41,12 @@ class GeneratorFieldRelation
                 $relationClass = 'BelongsTo';
                 break;
             case 'mtm':
-                $functionName = Str::camel(str_plural($modelName));
+                $functionName = Str::camel(Str::plural($modelName));
                 $relation = 'belongsToMany';
                 $relationClass = 'BelongsToMany';
                 break;
             case 'hmt':
-                $functionName = Str::camel(str_plural($modelName));
+                $functionName = Str::camel(Str::plural($modelName));
                 $relation = 'hasManyThrough';
                 $relationClass = 'HasManyThrough';
                 break;
