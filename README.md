@@ -38,6 +38,12 @@ For https://github.com/dandisy/webcore
 
     php artisan vendor:publish --tag=datatables-buttons --force
 
+    ---
+
+    jlapp/swaggervel
+
+    league/glide-laravel
+
 ### Notes
 
 This package based on https://github.com/InfyOmLabs/laravel-generator
