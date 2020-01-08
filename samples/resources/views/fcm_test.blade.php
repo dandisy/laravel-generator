@@ -4,7 +4,7 @@
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<meta http-equiv="X-UA-Compatible" content="ie=edge">
-	
+
 	<meta http-equiv='cache-control' content='no-cache'>
 	<meta http-equiv='expires' content='0'>
 	<meta http-equiv='pragma' content='no-cache'>
@@ -37,14 +37,14 @@
 	<script>
 		// Your web app's Firebase configuration
 		var firebaseConfig = {
-			apiKey: "AIzaSyBMNmyMeO8Qt8boF66l-YQNQsl8DUyQ220",
-			authDomain: "clove-8fc8d.firebaseapp.com",
-			databaseURL: "https://clove-8fc8d.firebaseio.com",
-			projectId: "clove-8fc8d",
-			storageBucket: "clove-8fc8d.appspot.com",
-			messagingSenderId: "854304257793",
-			appId: "1:854304257793:web:4bab04cc16e03d1fad8d00",
-			// measurementId: "G-D1D8PDQZ2T"
+			apiKey: "your-apiKey",
+			authDomain: "your-authDomain",
+			databaseURL: "your-databseUrl",
+			projectId: "your-projectId",
+			storageBucket: "your-storageBucket",
+			messagingSenderId: "your-messagingSenderId",
+			appId: "your-appId",
+			// measurementId: "your-measurementId"
 		};
 
 		// Initialize Firebase
@@ -276,5 +276,5 @@
 
 		// resetUI();
 		requestPermission();
-	</script>	
+	</script>
 </body>

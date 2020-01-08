@@ -57,7 +57,7 @@ Route::post('/forgotPassword', function (Request $request) {
     }
 
     if($check) {
-        $data['url'] = 'http://116.197.132.116:40009/resetPassword?token='.$token;
+        $data['url'] = 'http://localhost/resetPassword?token='.$token;
 
         \Mail::send('reset_mail', $data, function($message) use ($request) {
             // $message->to('dandisy.test1@gmail.com', 'Dandi Setiyawan')
@@ -301,7 +301,7 @@ Route::post('/register', function (Request $request) {
 Route::middleware('auth:api')->post('invitation', function(Request $request) {
     $user = $request->user();
 
-    $baseUrl = 'http://116.197.132.116:40009/';
+    $baseUrl = 'http://localhost';
 
     if(empty($user->id)) {
         return response(json_encode([
