@@ -20,7 +20,8 @@
         "php": "^7.1.3",
         "illuminate/support": "~5.0|~6.0|~7.0",
         "prettus/l5-repository": "~2.6",
-        "laracasts/flash": "~3.0"
+        "laracasts/flash": "~3.0",
+        "dandisy/swagger-generator": "^1.1"
     },
     "require-dev": {
         "phpunit/phpunit": "^8.0",

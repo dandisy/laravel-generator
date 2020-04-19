@@ -19,8 +19,6 @@ For https://github.com/dandisy/webcore
     composer require dandisy/laravel-generator
     php artisan vendor:publish --provider="Webcore\Generator\WebcoreGeneratorServiceProvider"
 
-    composer require dandisy/swagger-generator
-
     composer require dandisy/adminlte-templates
     php artisan vendor:publish --provider="Webcore\AdminLTETemplates\AdminLTETemplatesServiceProvider" --tag="public"
     php artisan vendor:publish --provider="Webcore\AdminLTETemplates\AdminLTETemplatesServiceProvider" --tag="views"
