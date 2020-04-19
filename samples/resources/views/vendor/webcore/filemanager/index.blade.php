@@ -2,8 +2,8 @@
 
 @section('styles')
     <!-- added by dandisy -->
-    <link rel="stylesheet" href="{{ asset('vendor/adminlte/plugins/bootstrap/css/bootstrap.min.css') }}">
-    <link rel="stylesheet" href="{{ asset('vendor/adminlte/plugins//font-awesome/css/font-awesome.min.css') }}">
+    <link rel="stylesheet" href="{{ asset('vendor/bootstrap/css/bootstrap.min.css') }}">
+    <link rel="stylesheet" href="{{ asset('vendor/font-awesome/css/font-awesome.min.css') }}">
     <!-- end added by dandisy -->
 
     <link rel="stylesheet" href="https://cdn.plyr.io/1.5.18/plyr.css">
