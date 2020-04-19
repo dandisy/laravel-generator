@@ -22,6 +22,16 @@
         .navbar-nav {
             display: block;
         }
+        .fade.show {
+            opacity: 1;
+            background: rgba(0,0,0,0.3);
+        }
+        /* .modal {
+            background: rgba(0,0,0,0.3);
+        } */
+        .modal.fade .modal-dialog {
+            transform: translate(0,0);
+        }
     </style>
 @endsection
 
