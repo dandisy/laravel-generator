@@ -23,8 +23,6 @@ For https://github.com/dandisy/webcore
     php artisan vendor:publish --provider="Webcore\AdminLTETemplates\AdminLTETemplatesServiceProvider" --tag="public"
     php artisan vendor:publish --provider="Webcore\AdminLTETemplates\AdminLTETemplatesServiceProvider" --tag="views"
 
-    composer require laravelcollective/html
-
 (optional)
 
     composer require yajra/laravel-datatables-oracle:"~9.0"
