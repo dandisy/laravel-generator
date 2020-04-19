@@ -349,16 +349,35 @@ Route::group(['middleware' => 'auth'], function () {
     });
 });
 
+// Route::get('/img/{path}', function(Filesystem $filesystem, $path) {
+//     $server = ServerFactory::create([
+//         'response' => new LaravelResponseFactory(app('request')),
+//         'source' => $filesystem->getDriver(),
+//         'cache' => $filesystem->getDriver(),
+//         'cache_path_prefix' => '.cache',
+//         'base_url' => 'img',
+//     ]);
+
+//     return $server->getImageResponse($path, request()->all());
+// })->where('path', '.*');
+
 Route::get('/img/{path}', function(Filesystem $filesystem, $path) {
+    $r = request()->all();
     $server = ServerFactory::create([
         'response' => new LaravelResponseFactory(app('request')),
-        'source' => $filesystem->getDriver(),
-        'cache' => $filesystem->getDriver(),
+        'source' => Storage::disk("public")->getDriver(),
+        'cache' => Storage::disk("public")->getDriver(),
         'cache_path_prefix' => '.cache',
         'base_url' => 'img',
     ]);
+    
+    $p = $path;
+    
+    if(isset($r['dir'])) {
+        $p = $r['dir'].'/'.$path;
+    }
 
-    return $server->getImageResponse($path, request()->all());
+    return $server->getImageResponse($p, request()->all());
 })->where('path', '.*');
 
 
