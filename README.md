@@ -17,25 +17,22 @@ For https://github.com/dandisy/webcore
 ### Installation
 
     composer require dandisy/laravel-generator
-
     php artisan vendor:publish --provider="Webcore\Generator\WebcoreGeneratorServiceProvider"
 
     composer require dandisy/swagger-generator
 
     composer require dandisy/adminlte-templates
-
     php artisan vendor:publish --provider="Webcore\AdminLTETemplates\AdminLTETemplatesServiceProvider" --tag="public"
-
     php artisan vendor:publish --provider="Webcore\AdminLTETemplates\AdminLTETemplatesServiceProvider" --tag="views"
+
+    composer require laravelcollective/html
 
 (optional)
 
     composer require yajra/laravel-datatables-oracle:"~9.0"
-
     php artisan vendor:publish --provider="Yajra\DataTables\DataTablesServiceProvider"
 
     composer require yajra/laravel-datatables-buttons:^4.0
-
     php artisan vendor:publish --tag=datatables-buttons --force
 
     ---
@@ -43,6 +40,9 @@ For https://github.com/dandisy/webcore
     jlapp/swaggervel
 
     league/glide-laravel
+
+    dandisy/filemanager
+    php artisan vendor:publish --provider="Webcore\FileManager\FileManagerServiceProvider"
 
 ### Notes
 
