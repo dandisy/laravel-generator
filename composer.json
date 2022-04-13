@@ -21,7 +21,7 @@
         "illuminate/support": "~5.0|~6.0|~7.0|~8.0|~9.0",
         "prettus/l5-repository": "~2.6",
         "laracasts/flash": "~3.0",
-        "dandisy/swagger-generator": "^1.2",
+        "dandisy/swagger-generator": "^1.1",
         "laravelcollective/html": "^6.1"
     },
     "require-dev": {
