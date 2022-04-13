@@ -25,6 +25,9 @@ For https://github.com/dandisy/webcore
     php artisan vendor:publish --provider="Webcore\AdminLTETemplates\AdminLTETemplatesServiceProvider" --tag="public"
     php artisan vendor:publish --provider="Webcore\AdminLTETemplates\AdminLTETemplatesServiceProvider" --tag="views"
 
+    if using laravel >= 8, add route namespace in RouteServiceProvider
+    ->namespace('App\Http\Controllers')
+
 (optional)
 
     composer require yajra/laravel-datatables-oracle:"~9.0"
