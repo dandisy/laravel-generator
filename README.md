@@ -9,8 +9,10 @@ Laravel Generator with Additional Form Builder
     - File Manager (htmltype = file-manager or files-manager)
     - Nullable field in migration (console option = n, or in json file using dbNullable = true)
     - Logged fields : created_by and updated_by (console option = --logs)
-    - Relational support : add model view in controller, related function in model, and related data in select2 form filed (htmltype = select,model-view=show-field=value-field)
-    - Component and theme reader generator (htmltype = select,component or select,theme)
+    - Related Dropdown (in console, use --relations option) : add view model in controller, and relational input form in view (htmltype = select,relation:{view-model}={field-to-show}={field-as-value})
+    - Related Form (in console, use --relations option) : add view model in controller, and relational input form in view (dbtype = table and htmltype = related-form,related-field1,related-field2,related-field3,...)
+    - Component and theme directory reader generator (htmltype = select,component or select,theme)
+    - Model directory reader generator (htmltype = select,model)
 
 For https://github.com/dandisy/webcore
 
