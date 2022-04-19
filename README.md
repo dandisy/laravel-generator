@@ -30,9 +30,11 @@ For https://github.com/dandisy/webcore
 
 (optional)
 
+    https://github.com/yajra/laravel-datatables
     composer require yajra/laravel-datatables-oracle:"~9.0"
     php artisan vendor:publish --provider="Yajra\DataTables\DataTablesServiceProvider"
 
+    https://github.com/yajra/laravel-datatables-buttons
     composer require yajra/laravel-datatables-buttons:^4.0
     php artisan vendor:publish --tag=datatables-buttons --force
 
