@@ -20,6 +20,7 @@ For https://github.com/dandisy/webcore
 
     composer require dandisy/laravel-generator
     php artisan vendor:publish --provider="Webcore\Generator\WebcoreGeneratorServiceProvider"
+    php artisan migrate
 
     composer require dandisy/adminlte-templates
     php artisan vendor:publish --provider="Webcore\AdminLTETemplates\AdminLTETemplatesServiceProvider" --tag="public"

@@ -41,7 +41,7 @@ return [
 
         'schema_files'      => base_path('resources/model_schemas/'),
 
-        'templates_dir'     => base_path('resources/infyom/infyom-generator-templates/'),
+        'templates_dir'     => base_path('resources/webcore/webcore-generator-templates/'),
 
         'modelJs'           => base_path('resources/assets/js/models/'),
     ],
