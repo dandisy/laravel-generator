@@ -26,7 +26,9 @@ For https://github.com/dandisy/webcore
     php artisan vendor:publish --provider="Webcore\AdminLTETemplates\AdminLTETemplatesServiceProvider" --tag="views"
 
     if using laravel >= 8, add route namespace in RouteServiceProvider
-    ->namespace('App\Http\Controllers')
+    Route::middleware('web')
+        ->namespace('App\Http\Controllers')
+        ...
 
 (optional)
 
