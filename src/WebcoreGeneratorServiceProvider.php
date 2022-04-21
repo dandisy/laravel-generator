@@ -39,7 +39,7 @@ class WebcoreGeneratorServiceProvider extends ServiceProvider
             __DIR__.'/../samples/public' => public_path(),
             __DIR__.'/../samples/app/Http/Controllers/AppBaseController.php' => app_path('Http/Controllers/AppBaseController.php'),
             __DIR__.'/../samples/app/Models/Profile.php' => app_path('Models/Profile.php'),
-            __DIR__.'/../samples/app/database/migrations/2018_02_24_120828_create_profiles_table.php' => database_path('migrations/2018_02_24_120828_create_profiles_table.php'),
+            __DIR__.'/../samples/database/migrations/2018_02_24_120828_create_profiles_table.php' => database_path('migrations/2018_02_24_120828_create_profiles_table.php'),
         ]);
     }
 
