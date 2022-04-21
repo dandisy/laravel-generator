@@ -19,6 +19,7 @@ For https://github.com/dandisy/webcore
 ### Installation
 
     composer require dandisy/laravel-generator
+    backup your resources/views/auth, layouts, home.blade.php, and welcome.blade.php
     php artisan vendor:publish --provider="Webcore\Generator\WebcoreGeneratorServiceProvider"
     php artisan migrate
     if needed copy & paste all files related for roles, permissions and settings, and dxdatagrid, and exceptions handler from samples folder in this package
