@@ -21,6 +21,7 @@ For https://github.com/dandisy/webcore
     composer require dandisy/laravel-generator
     php artisan vendor:publish --provider="Webcore\Generator\WebcoreGeneratorServiceProvider"
     php artisan migrate
+    if needed copy & paste all files related for roles, permissions and settings, and dxdatagrid, and exceptions handler from samples folder in this package
 
     composer require dandisy/adminlte-templates
     php artisan vendor:publish --provider="Webcore\AdminLTETemplates\AdminLTETemplatesServiceProvider" --tag="public"
