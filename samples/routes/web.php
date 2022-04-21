@@ -381,6 +381,16 @@ Route::get('/img/{path}', function(Filesystem $filesystem, $path) {
 })->where('path', '.*');
 
 
+Route::middleware('auth')->get('/storage/uploads/{userId}/{fileName}', function (Request $request, $userId, $fileName) {
+    // $savePath = env('SAVE_PATH'); // SAVE_PATH=./app/public/uploads/
+    $savePath = './app/public/uploads/';
+    $dir = str_replace('./','',$savePath).$request->user()->id;
+    $dir = str_replace('/',DIRECTORY_SEPARATOR,$dir);
+    $pathToFile = storage_path($dir).DIRECTORY_SEPARATOR.$fileName;
+    return response()->file($pathToFile);
+});
+
+
 Route::middleware(['can:admin'])->group(function () {
     Route::resource('users', 'UserController');
     // Route::post('importUser', 'UserController@import');

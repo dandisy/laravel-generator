@@ -36,6 +36,20 @@ class $MODEL_NAME$Controller extends AppBaseController
         $this->$MODEL_NAME_CAMEL$Repository->pushCriteria(new RequestCriteria($request));
         $$MODEL_NAME_PLURAL_CAMEL$ = $this->$MODEL_NAME_CAMEL$Repository->$RENDER_TYPE$;
 
+        // $ch = curl_init();
+        // curl_setopt($ch, CURLOPT_URL, env('SERVICE_BASE_URL').'/api/elorest/Models/$MODEL_NAME$');
+        // curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+        // curl_setopt($ch, CURLOPT_HTTPHEADER, array(
+        //     // "Authorization: bearer " . session('api_key'),
+        //     // "cache-control: no-cache",
+        //     // "Content-Type:application/x-www-form-urlencoded;charset=UTF-8",
+        //     "Content-Type:application/json;charset=UTF-8",
+        //     "Accept-Charset:UTF-8"
+        // ));
+        // $result = curl_exec($ch);
+        // curl_close($ch);
+        // $$MODEL_NAME_PLURAL_CAMEL$ = json_decode($result)->data;
+
         return view('$VIEW_PREFIX$$MODEL_NAME_PLURAL_SNAKE$.index')
             ->with('$MODEL_NAME_PLURAL_CAMEL$', $$MODEL_NAME_PLURAL_CAMEL$);
     }
@@ -66,7 +80,71 @@ class $MODEL_NAME$Controller extends AppBaseController
     {
         $input = $request->all();
 
+        // // $savePath = env('SAVE_PATH'); // SAVE_PATH=./app/public/uploads/
+        // $savePath = './app/public/uploads/';
+        // $dir = str_replace('./','',$savePath).Auth::user()->id;
+        // $dir = str_replace('/',DIRECTORY_SEPARATOR,$dir);
+        // if (!storage_path($dir)) {
+        //     mkdir(storage_path($dir), 0777, true);
+        // }
+        // $model = '$MODEL_NAME$';
+        // if($request->hasFile('file')) {
+        //     $extension = $request->file('file')->extension();
+        //     $name = Auth::user()->id.'_'.$model.'_'.time().'.'.$extension;
+        //     $path = $dir.DIRECTORY_SEPARATOR.$name;
+        //     if (realpath(storage_path($path))) {
+        //         Flash::error('File already exist.');
+        //     }
+        //     $file = $request->file('file');
+        //     $file->move(storage_path($dir), $name);
+        //     $imagePath = str_replace('app'.DIRECTORY_SEPARATOR.'public'.DIRECTORY_SEPARATOR,'',$path);
+        //     $input['file'] = url('/storage').'/'.str_replace(DIRECTORY_SEPARATOR,'/',$imagePath);
+        // } else {
+        //     if(base64_decode($request->file, true) !== false) {
+        //         $extension = explode('/', mime_content_type($request->file))[1];
+        //         $name = Auth::user()->id.'_'.$model.'_'.time().'.'.$extension;
+        //         $path = $dir.DIRECTORY_SEPARATOR.$name;
+        //         file_put_contents(str_replace('public'.DIRECTORY_SEPARATOR,'',$path),base64_decode($request->file));
+        //     }
+        //     $imagePath = str_replace('app'.DIRECTORY_SEPARATOR.'public'.DIRECTORY_SEPARATOR,'',$path);
+        //     $input['file'] = url('/storage').'/'.str_replace(DIRECTORY_SEPARATOR,'/',$imagePath);
+        // }
+
+        // if($request->hasFile('file')) {
+        //     $tmpfile = $_FILES['file']['tmp_name'];
+        //     // $filename = basename($_FILES['file']['name']);
+        //     if(function_exists('curl_file_create')) {
+        //         $fileData = curl_file_create($tmpfile);
+        //     } else {
+        //         $fileData = '@'.realpath($tmpfile);
+        //     }
+        //     $ch = curl_init();
+        //     curl_setopt($ch, CURLOPT_URL, env('SERVICE_BASE_URL').'/api/upload/'.Auth::user()->id.'/$MODEL_NAME$');
+        //     curl_setopt($ch, CURLOPT_POST, 1);
+        //     curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+        //     curl_setopt($ch, CURLOPT_POSTFIELDS, array('file' => $fileData));
+        //     $result = curl_exec($ch);
+        //     curl_close($ch);
+        //     $input['file'] = json_decode($result)->data;
+        // }
+
         $$MODEL_NAME_CAMEL$ = $this->$MODEL_NAME_CAMEL$Repository->create($input);
+
+        // $ch = curl_init();
+        // curl_setopt($ch, CURLOPT_URL, env('SERVICE_BASE_URL').'/api/elorest/Models/$MODEL_NAME$');
+        // curl_setopt($ch, CURLOPT_POST, 1);
+        // curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+        // curl_setopt($ch, CURLOPT_POSTFIELDS, http_build_query($input);
+        // curl_setopt($ch, CURLOPT_HTTPHEADER, array(
+        //     // "Authorization: bearer " . session('api_key'),
+        //     // "cache-control: no-cache",
+        //     // "Content-Type:application/x-www-form-urlencoded;charset=UTF-8",
+        //     "Content-Type:application/json;charset=UTF-8",
+        //     "Accept-Charset:UTF-8"
+        // ));
+        // $result = curl_exec($ch);
+        // curl_close($ch);
+        // $$MODEL_NAME_CAMEL$ = json_decode($result)->data;
 
         Flash::success('$MODEL_NAME_HUMAN$ saved successfully.');
 
@@ -83,6 +161,20 @@ class $MODEL_NAME$Controller extends AppBaseController
     public function show($id)
     {
         $$MODEL_NAME_CAMEL$ = $this->$MODEL_NAME_CAMEL$Repository->findWithoutFail($id);
+
+        // $ch = curl_init();
+        // curl_setopt($ch, CURLOPT_URL, env('SERVICE_BASE_URL').'/api/elorest/Models/$MODEL_NAME$/'.$id);
+        // curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+        // curl_setopt($ch, CURLOPT_HTTPHEADER, array(
+        //     // "Authorization: bearer " . session('api_key'),
+        //     // "cache-control: no-cache",
+        //     // "Content-Type:application/x-www-form-urlencoded;charset=UTF-8",
+        //     "Content-Type:application/json;charset=UTF-8",
+        //     "Accept-Charset:UTF-8"
+        // ));
+        // $result = curl_exec($ch);
+        // curl_close($ch);
+        // $$MODEL_NAME_CAMEL$ = json_decode($result)->data;
 
         if (empty($$MODEL_NAME_CAMEL$)) {
             Flash::error('$MODEL_NAME_HUMAN$ not found');
@@ -106,6 +198,20 @@ class $MODEL_NAME$Controller extends AppBaseController
         $RELATION_QUERY$$COMPONENT_QUERY$$THEME_QUERY$$MODEL_QUERY$
 
         $$MODEL_NAME_CAMEL$ = $this->$MODEL_NAME_CAMEL$Repository->findWithoutFail($id);
+
+        // $ch = curl_init();
+        // curl_setopt($ch, CURLOPT_URL, env('SERVICE_BASE_URL').'/api/elorest/Models/$MODEL_NAME$/'.$id);
+        // curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+        // curl_setopt($ch, CURLOPT_HTTPHEADER, array(
+        //     // "Authorization: bearer " . session('api_key'),
+        //     // "cache-control: no-cache",
+        //     // "Content-Type:application/x-www-form-urlencoded;charset=UTF-8",
+        //     "Content-Type:application/json;charset=UTF-8",
+        //     "Accept-Charset:UTF-8"
+        // ));
+        // $result = curl_exec($ch);
+        // curl_close($ch);
+        // $$MODEL_NAME_CAMEL$ = json_decode($result)->data;
 
         if (empty($$MODEL_NAME_CAMEL$)) {
             Flash::error('$MODEL_NAME_HUMAN$ not found');
@@ -137,7 +243,73 @@ class $MODEL_NAME$Controller extends AppBaseController
             return redirect(route('$ROUTE_NAMED_PREFIX$$MODEL_NAME_PLURAL_CAMEL$.index'));
         }
 
-        $$MODEL_NAME_CAMEL$ = $this->$MODEL_NAME_CAMEL$Repository->update($request->all(), $id);
+        $input = $request->all();
+
+        // // $savePath = env('SAVE_PATH'); // SAVE_PATH=./app/public/uploads/
+        // $savePath = './app/public/uploads/';
+        // $dir = str_replace('./','',$savePath).Auth::user()->id;
+        // $dir = str_replace('/',DIRECTORY_SEPARATOR,$dir);
+        // if (!storage_path($dir)) {
+        //     mkdir(storage_path($dir), 0777, true);
+        // }
+        // $model = '$MODEL_NAME$';
+        // if($request->hasFile('file')) {
+        //     $extension = $request->file('file')->extension();
+        //     $name = Auth::user()->id.'_'.$model.'_'.time().'.'.$extension;
+        //     $path = $dir.DIRECTORY_SEPARATOR.$name;
+        //     if (realpath(storage_path($path))) {
+        //         Flash::error('File already exist.');
+        //     }
+        //     $file = $request->file('file');
+        //     $file->move(storage_path($dir), $name);
+        //     $imagePath = str_replace('app'.DIRECTORY_SEPARATOR.'public'.DIRECTORY_SEPARATOR,'',$path);
+        //     $input['file'] = url('/storage').'/'.str_replace(DIRECTORY_SEPARATOR,'/',$imagePath);
+        // } else {
+        //     if(base64_decode($request->file, true) !== false) {
+        //         $extension = explode('/', mime_content_type($request->file))[1];
+        //         $name = Auth::user()->id.'_'.$model.'_'.time().'.'.$extension;
+        //         $path = $dir.DIRECTORY_SEPARATOR.$name;
+        //         file_put_contents(str_replace('public'.DIRECTORY_SEPARATOR,'',$path),base64_decode($request->file));
+        //     }
+        //     $imagePath = str_replace('app'.DIRECTORY_SEPARATOR.'public'.DIRECTORY_SEPARATOR,'',$path);
+        //     $input['file'] = url('/storage').'/'.str_replace(DIRECTORY_SEPARATOR,'/',$imagePath);
+        // }
+
+        // if($request->hasFile('file')) {
+        //     $tmpfile = $_FILES['file']['tmp_name'];
+        //     // $filename = basename($_FILES['file']['name']);
+        //     if(function_exists('curl_file_create')) {
+        //         $fileData = curl_file_create($tmpfile);
+        //     } else {
+        //         $fileData = '@'.realpath($tmpfile);
+        //     }
+        //     $ch = curl_init();
+        //     curl_setopt($ch, CURLOPT_URL, env('SERVICE_BASE_URL').'/api/upload/'.Auth::user()->id.'/$MODEL_NAME$');
+        //     curl_setopt($ch, CURLOPT_POST, 1);
+        //     curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+        //     curl_setopt($ch, CURLOPT_POSTFIELDS, array('file' => $fileData));
+        //     $result = curl_exec($ch);
+        //     curl_close($ch);
+        //     $input['file'] = json_decode($result)->data;
+        // }
+
+        $$MODEL_NAME_CAMEL$ = $this->$MODEL_NAME_CAMEL$Repository->update($input, $id);
+
+        // $ch = curl_init();
+        // curl_setopt($ch, CURLOPT_URL, env('SERVICE_BASE_URL').'/api/elorest/Models/$MODEL_NAME$/'.$id);
+        // curl_setopt($ch, CURLOPT_CUSTOMREQUEST, "PUT");
+        // curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+        // curl_setopt($ch, CURLOPT_POSTFIELDS, http_build_query($input);
+        // curl_setopt($ch, CURLOPT_HTTPHEADER, array(
+        //     // "Authorization: bearer " . session('api_key'),
+        //     // "cache-control: no-cache",
+        //     // "Content-Type:application/x-www-form-urlencoded;charset=UTF-8",
+        //     "Content-Type:application/json;charset=UTF-8",
+        //     "Accept-Charset:UTF-8"
+        // ));
+        // $result = curl_exec($ch);
+        // curl_close($ch);
+        // $$MODEL_NAME_CAMEL$ = json_decode($result)->data;
 
         Flash::success('$MODEL_NAME_HUMAN$ updated successfully.');
 
@@ -163,6 +335,21 @@ class $MODEL_NAME$Controller extends AppBaseController
 
         $this->$MODEL_NAME_CAMEL$Repository->delete($id);
 
+        // $ch = curl_init();
+        // curl_setopt($ch, CURLOPT_URL, env('SERVICE_BASE_URL').'/api/elorest/Models/$MODEL_NAME$/'.$id);
+        // curl_setopt($ch, CURLOPT_CUSTOMREQUEST, "DELETE");
+        // curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+        // curl_setopt($ch, CURLOPT_HTTPHEADER, array(
+        //     // "Authorization: bearer " . session('api_key'),
+        //     // "cache-control: no-cache",
+        //     // "Content-Type:application/x-www-form-urlencoded;charset=UTF-8",
+        //     "Content-Type:application/json;charset=UTF-8",
+        //     "Accept-Charset:UTF-8"
+        // ));
+        // $result = curl_exec($ch);
+        // curl_close($ch);
+        // $$MODEL_NAME_CAMEL$ = json_decode($result)->data;
+
         Flash::success('$MODEL_NAME_HUMAN$ deleted successfully.');
 
         return redirect(route('$ROUTE_NAMED_PREFIX$$MODEL_NAME_PLURAL_CAMEL$.index'));
@@ -180,6 +367,22 @@ class $MODEL_NAME$Controller extends AppBaseController
         Excel::load($request->file('file'), function($reader) {
             $reader->each(function ($item) {
                 $$MODEL_NAME_CAMEL$ = $this->$MODEL_NAME_CAMEL$Repository->create($item->toArray());
+
+                // $ch = curl_init();
+                // curl_setopt($ch, CURLOPT_URL, env('SERVICE_BASE_URL').'/api/elorest/Models/$MODEL_NAME$');
+                // curl_setopt($ch, CURLOPT_POST, 1);
+                // curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+                // curl_setopt($ch, CURLOPT_POSTFIELDS, http_build_query($item->toArray());
+                // curl_setopt($ch, CURLOPT_HTTPHEADER, array(
+                //     // "Authorization: bearer " . session('api_key'),
+                //     // "cache-control: no-cache",
+                //     // "Content-Type:application/x-www-form-urlencoded;charset=UTF-8",
+                //     "Content-Type:application/json;charset=UTF-8",
+                //     "Accept-Charset:UTF-8"
+                // ));
+                // $result = curl_exec($ch);
+                // curl_close($ch);
+                // $$MODEL_NAME_CAMEL$ = json_decode($result)->data;
             });
         });
 

@@ -256,6 +256,142 @@ Route::middleware('auth:api')->post('/notif-token', function (Request $request) 
         ->header('Content-Type', 'application/json');
 });
 
+// Todo : Client Credentials Grant Tokens for machine-to-machine authentication
+Route::post('/upload/{userId}/{model}', function(Request $request, $userId, $model) {
+    // $savePath = env('SAVE_PATH'); // SAVE_PATH=./app/public/uploads/
+    $savePath = './app/public/uploads/';
+    // $dir = str_replace('./','',$savePath).$user->id;
+    $dir = str_replace('./','',$savePath).$userId;
+    $dir = str_replace('/',DIRECTORY_SEPARATOR,$dir);
+
+    if (!storage_path($dir)) {
+        mkdir(storage_path($dir), 0777, true);
+    }
+
+    // $model = 'Backend';
+    if($request->hasFile('file')) {
+        $extension = $request->file('file')->extension();
+        $name = '1_'.$model.'_'.time().'.'.$extension;
+        $path = $dir.DIRECTORY_SEPARATOR.$name;
+
+        if (realpath(storage_path($path))) {
+            return response(json_encode([
+                "code" => 200,
+                "status" => false,
+                "message" => "file already exist"
+            ], 200))
+                ->header('Content-Type', 'application/json');
+        }
+
+        $file = $request->file('file');
+        $file->move(storage_path($dir), $name);
+
+        if(realpath(storage_path($path))) {
+            return response([
+                "code" => 201,
+                "status" => true,
+                "message" => "file saved successfully",
+                "data" => url('/storage').str_replace('app/public','',str_replace(DIRECTORY_SEPARATOR,'/',$path))
+            ], 201)
+                ->header('Content-Type', 'application/json');
+        }
+    } else {
+        if(base64_decode($request->file, true) !== false) {
+            $extension = explode('/', mime_content_type($request->file))[1];
+            $name = $userId.'_'.$model.'_'.time().'.'.$extension;
+            $path = $dir.DIRECTORY_SEPARATOR.$name;
+            file_put_contents(str_replace('public'.DIRECTORY_SEPARATOR,'',$path),base64_decode($request->file));
+
+            if(realpath(storage_path($path))) {
+                return response([
+                    "code" => 201,
+                    "status" => true,
+                    "message" => "file saved successfully",
+                    "data" => url('/storage').str_replace('app/public','',str_replace(DIRECTORY_SEPARATOR,'/',$path))
+                ], 201)
+                    ->header('Content-Type', 'application/json');
+            }
+        }
+    }
+});
+
+Route::middleware('auth:api')->post('/selectExec/{sp}', function (Request $request, $sp) {
+    // $query = 'EXEC ' . $sp . '(' . implode(',',$request->params) . ')';
+    $query = 'EXEC ' . $sp . '(' . $request->params . ')';
+    return DB::select($query);
+});
+
+Route::middleware('auth:api')->post('/selectCall/{sp}', function (Request $request, $sp) {
+    // $query = 'CALL ' . $sp . '(' . implode(',',$request->params) . ')';
+    $query = 'CALL ' . $sp . '(' . $request->params . ')';
+    return DB::select($query);
+});
+
+Route::middleware('auth:api')->post('/statetmentExec/{sp}', function (Request $request, $sp) {
+    // $query = 'EXEC ' . $sp . '(' . implode(',',$request->params) . ')';
+    $query = 'EXEC ' . $sp . '(' . $request->params . ')';
+    return DB::statetment($query);
+});
+
+Route::middleware('auth:api')->post('/statetmentCall/{sp}', function (Request $request, $sp) {
+    // $query = 'CALL ' . $sp . '(' . implode(',',$request->params) . ')';
+    $query = 'CALL ' . $sp . '(' . $request->params . ')';
+    return DB::statetment($query);
+});
+
+// Route::post('/login', function (Request $request) {
+//     $user = \App\Models\User::where('email', $request->email)->where('password', hash($request->password))->first();
+
+//     if($user) {
+//         $token = $user->createToken('Bearer');
+//         // $token = $request->user()->createToken($request->token_name);
+    
+//         return ['token' => $token->plainTextToken];
+//     } else {
+//         return abort(301);
+//     }
+// });
+
+Route::post('/login', function (Request $request) {
+    $request->validate([
+        'email' => 'required|email',
+        'password' => 'required',
+        'device_name' => 'required',
+    ]);
+ 
+    $user = \App\Models\User::where('email', $request->email)->first();
+ 
+    if (! $user || ! \Illuminate\Support\Facades\Hash::check($request->password, $user->password)) {
+        throw \Illuminate\Validation\ValidationException::withMessages([
+            'email' => ['The provided credentials are incorrect.'],
+        ]);
+    }
+ 
+    return $user->createToken($request->device_name)->plainTextToken;
+});
+
+// Route::post('/register', function (Request $request) {
+//     $request->validate([
+//         'name' => 'required',
+//         'email' => 'required|email',
+//         'password' => 'required'
+//     ]);
+ 
+//     $user = \App\Models\User::where('email', $request->email)->first();
+ 
+//     if ($user) {
+//         throw \Illuminate\Validation\ValidationException::withMessages([
+//             'email' => ['The provided email already registered.']
+//         ]);
+//     }
+ 
+//     return \App\Models\User::create([
+//         'name' => $request->name,
+//         'email' => $request->email,
+//         'password' => \Illuminate\Support\Facades\Hash::make($request->password)
+//     ]);
+// });
+
 Route::post('/register', function (Request $request) {
     // TODO : tambahkan point untuk user by reference_code yang berhasil mengajak org lain register
     if($request->reference_code) {
