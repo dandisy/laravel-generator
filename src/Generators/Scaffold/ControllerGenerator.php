@@ -119,9 +119,17 @@ class ControllerGenerator extends BaseGenerator
             // edited by dandisy
             // $templateData = get_template('scaffold.controller.controller', 'laravel-generator');
             if($this->commandData->getOption('logs')) {
-                $templateData = get_template('scaffold.controller.logged_controller', 'laravel-generator');
+                if($this->commandData->getOption('queryToAPI')) {
+                    $templateData = get_template('scaffold.controller.query_to_api_logged_controller', 'laravel-generator');
+                } else {
+                    $templateData = get_template('scaffold.controller.logged_controller', 'laravel-generator');
+                }
             } else {
-                $templateData = get_template('scaffold.controller.controller', 'laravel-generator');
+                if($this->commandData->getOption('queryToAPI')) {
+                    $templateData = get_template('scaffold.controller.query_to_api_controller', 'laravel-generator');
+                } else {
+                    $templateData = get_template('scaffold.controller.controller', 'laravel-generator');
+                }
             }
 
             $paginate = $this->commandData->getOption('paginate');

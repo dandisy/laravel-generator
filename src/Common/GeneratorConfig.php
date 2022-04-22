@@ -74,7 +74,8 @@ class GeneratorConfig
         'datatables',
         'views',
         'relations',
-        'logs' // added by dandisy
+        'logs', // added by dandisy
+        'queryToAPI', // added by dandisy
     ];
 
     public $tableName;
@@ -460,8 +461,7 @@ class GeneratorConfig
             }
         }
 
-        // $addOns = ['swagger', 'tests', 'datatables']; edited by dandisy
-        $addOns = ['swagger', 'tests', 'datatables', 'log'];
+        $addOns = ['swagger', 'tests', 'datatables'];
 
         foreach ($addOns as $addOn) {
             if (isset($jsonData['addOns'][$addOn])) {

@@ -139,7 +139,7 @@ class $MODEL_NAME$Controller extends AppBaseController
         // curl_setopt($ch, CURLOPT_URL, env('SERVICE_BASE_URL').'/api/elorest/Models/$MODEL_NAME$');
         // curl_setopt($ch, CURLOPT_POST, 1);
         // curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
-        // curl_setopt($ch, CURLOPT_POSTFIELDS, http_build_query($input);
+        // curl_setopt($ch, CURLOPT_POSTFIELDS, http_build_query($input));
         // curl_setopt($ch, CURLOPT_HTTPHEADER, array(
         //     // "Authorization: bearer " . session('api_key'),
         //     // "cache-control: no-cache",
@@ -305,7 +305,7 @@ class $MODEL_NAME$Controller extends AppBaseController
         // curl_setopt($ch, CURLOPT_URL, env('SERVICE_BASE_URL').'/api/elorest/Models/$MODEL_NAME$/'.$id);
         // curl_setopt($ch, CURLOPT_CUSTOMREQUEST, "PUT");
         // curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
-        // curl_setopt($ch, CURLOPT_POSTFIELDS, http_build_query($request->all());
+        // curl_setopt($ch, CURLOPT_POSTFIELDS, http_build_query($input));
         // curl_setopt($ch, CURLOPT_HTTPHEADER, array(
         //     // "Authorization: bearer " . session('api_key'),
         //     // "cache-control: no-cache",
@@ -378,7 +378,7 @@ class $MODEL_NAME$Controller extends AppBaseController
                 // curl_setopt($ch, CURLOPT_URL, env('SERVICE_BASE_URL').'/api/elorest/Models/'.$this->$MODEL_NAME_CAMEL$);
                 // curl_setopt($ch, CURLOPT_POST, 1);
                 // curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
-                // curl_setopt($ch, CURLOPT_POSTFIELDS, http_build_query($item->toArray());
+                // curl_setopt($ch, CURLOPT_POSTFIELDS, http_build_query($item->toArray()));
                 // curl_setopt($ch, CURLOPT_HTTPHEADER, array(
                 //     // "Authorization: bearer " . session('api_key'),
                 //     // "cache-control: no-cache",

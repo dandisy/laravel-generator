@@ -192,7 +192,7 @@ class CommandData
         $updatedBy = new GeneratorField();
         $updatedBy->name = 'updated_by';
         $updatedBy->parseDBType('integer');
-        $updatedBy->parseOptions('if,n'); // edited by dandisy
+        $updatedBy->parseOptions('if,n');
         $this->fields[] = $updatedBy;
     }
 
@@ -201,13 +201,13 @@ class CommandData
         $createdAt = new GeneratorField();
         $createdAt->name = 'created_at';
         $createdAt->parseDBType('timestamp');
-        $createdAt->parseOptions('s,f,if,ii,n'); // edited by dandisy
+        $createdAt->parseOptions('f,if,n'); // edited by dandisy
         $this->fields[] = $createdAt;
 
         $updatedAt = new GeneratorField();
         $updatedAt->name = 'updated_at';
         $updatedAt->parseDBType('timestamp');
-        $updatedAt->parseOptions('s,f,if,ii,n'); // edited by dandisy
+        $updatedAt->parseOptions('f,if,n'); // edited by dandisy
         $this->fields[] = $updatedAt;
     }
 

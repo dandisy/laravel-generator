@@ -13,6 +13,7 @@ Laravel Generator with Additional Form Builder
     - Related Form (in console, use --relations option) : add view model in controller, and relational input form in view (dbtype = table and htmltype = related-form,related-field1,related-field2,related-field3,...)
     - Component and theme directory reader generator (htmltype = select,component or select,theme)
     - Model directory reader generator (htmltype = select,model)
+    - CRUD with CURL to backend REST API service (console option = --queryToAPI)
 
 For https://github.com/dandisy/webcore
 
