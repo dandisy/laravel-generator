@@ -16,7 +16,8 @@ class AppServiceProvider extends ServiceProvider
      */
     public function register()
     {
-        //
+        // if(env('APP_ENV') == 'production')
+        // $this->app['request']->server->set('HTTPS', true);
     }
 
     /**
@@ -27,6 +28,9 @@ class AppServiceProvider extends ServiceProvider
     public function boot()
     {
         \Illuminate\Support\Facades\Schema::defaultStringLength(191); // added by dandisy
+
+        // if(env('APP_ENV') == 'production')
+        // URL::forceScheme('https');
 
         // // added by dandisy
         // View::share('appName', isset(Setting::where('key', "app-name")->first()->value) ? Setting::where('key', "app-name")->first()->value : 'Webcore');
